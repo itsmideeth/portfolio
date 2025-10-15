@@ -3,14 +3,15 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import ScheduleCallButton from "./components/schedulecallbutton";
 
 export default function Home() {
-const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(null);
   const [info, setInfo] = useState({});
   const [displayText, setDisplayText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
 
-  // Fetch GitHub avatar, location, weather, and time
+  // Fetch GitHub, location, weather, and time
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,14 +51,13 @@ const [avatar, setAvatar] = useState(null);
     return () => clearInterval(interval);
   }, []);
 
-  // Typing animation for info text
+  // Typing animation
   useEffect(() => {
     if (!info.city || !info.time) return;
-
     const fullText = `${info.city}, ${info.country} • ${info.time} • ${info.temp}°C`;
+
     setIsTyping(true);
     setDisplayText("");
-
     let i = 0;
     const interval = setInterval(() => {
       setDisplayText(fullText.slice(0, i));
@@ -72,109 +72,105 @@ const [avatar, setAvatar] = useState(null);
   }, [info]);
 
   return (
-    <main className="flex flex-col items-center justify-center pt-16 bg-white text-gray-900 px-4 text-center">
-      {/* Whole Section Fade + Lift */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="flex flex-col items-center"
+<main
+  className="
+    flex flex-col items-center justify-center
+    min-h-[55vh]
+    py-20
+    text-center text-gray-900 bg-white
+  "
+>
+  <motion.section
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1.2, ease: 'easeOut' }}
+    className="flex flex-col items-center mt-6 sm:mt-8 md:mt-10"
+  >
+    {/* Avatar */}
+    <motion.div
+      whileHover={{ scale: 1.08, rotate: 1 }}
+      transition={{ type: 'spring', stiffness: 200, damping: 10 }}
+      className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-md ring-2 ring-gray-100 hover:ring-[#0077B6]/40 cursor-pointer"
+    >
+      {avatar ? (
+        <Image src={avatar} alt="GitHub Avatar" fill className="object-cover" priority />
+      ) : (
+        <div className="flex items-center justify-center w-full h-full text-sm text-gray-400 bg-gray-100 sm:text-base animate-pulse">
+          Loading...
+        </div>
+      )}
+    </motion.div>
+
+    {/* Name */}
+    <motion.h1
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+      className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl"
+    >
+      Ajilogba Abdulrahmon
+    </motion.h1>
+
+    {/* Title */}
+    <motion.p
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.6 }}
+      className="mt-2 text-base font-medium text-gray-500 sm:text-lg md:text-xl"
+    >
+      Full-Stack Developer
+    </motion.p>
+
+    {/* Info line */}
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.8 }}
+      className="gap-16 mt-5 font-mono text-xs text-gray-600 sm:text-sm md:text-base"
+    >
+      {displayText}{" "}
+      {!isTyping && (
+        <motion.span
+          key={info.emoji}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          {info.emoji}
+        </motion.span>
+      )}
+    </motion.div>
+
+    {/* Day message */}
+    <motion.p
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.9 }}
+      className="mt-2 text-xs text-gray-500 sm:text-sm md:text-base"
+    >
+      Have a nice {info.day} {info.emoji}
+    </motion.p>
+
+    {/* Buttons */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.1 }}
+      className="flex flex-wrap justify-center gap-4 mt-8 sm:mt-10"
+    >
+      <motion.a
+        href="/about"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="px-6 py-2 sm:px-8 sm:py-2.5 rounded-full bg-gray-900 text-white font-medium shadow-sm hover:bg-gray-800 transition-all text-sm sm:text-base"
       >
-        {/* Avatar with Hover Pulse */}
-        <motion.div
-          whileHover={{ scale: 1.08, rotate: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 10,
-          }}
-          className="relative w-20 h-20 rounded-full overflow-hidden shadow-md ring-2 ring-gray-100 hover:ring-[#0077B6]/40 cursor-pointer"
-        >
-          {avatar ? (
-            <Image src={avatar} alt="GitHub Avatar" fill className="object-cover" priority />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gray-100 text-gray-400 text-sm animate-pulse">
-              Loading...
-            </div>
-          )}
-        </motion.div>
+        About me
+      </motion.a>
+      <ScheduleCallButton />
+    </motion.div>
+  </motion.section>
+</main>
 
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="text-3xl md:text-4xl font-semibold mt-6 tracking-tight"
-        >
-         Ajilogba Abdulrahmon
-        </motion.h1>
 
-        {/* Title */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="text-gray-500 text-lg mt-2 font-medium"
-        >
-         Full-Stack Developer
-        </motion.p>
-
-        {/* Info line */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="text-gray-600 mt-10 gap-16 text-sm font-mono"
-        >
-          {displayText}{" "}
-          {!isTyping && (
-            <motion.span
-              key={info.emoji}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              {info.emoji}
-            </motion.span>
-          )}
-        </motion.div>
-
-        {/* Day message */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
-          className="text-gray-500 text-sm mt-2"
-        >
-          Have a nice {info.day} {info.emoji}
-        </motion.p>
-
-        {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1 }}
-          className="flex flex-wrap justify-center gap-4 mt-10"
-        >
-          <motion.a
-            href="#about"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-1.5 rounded-full bg-gray-900 text-white font-medium shadow-sm hover:bg-gray-800 transition-all text-sm"
-          >
-            About me
-          </motion.a>
-
-          <motion.a
-            href="mailto:oyelekanoluwabukunmi@gmail.com"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-6 py-1.5 text-sm rounded-full border-gray-400 text-gray-800 font-medium hover:bg-gray-100 transition-all border-2"
-          >
-            Schedule a call
-          </motion.a>
-        </motion.div>
-      </motion.section>
-    </main>
   );
 }

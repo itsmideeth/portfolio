@@ -5,19 +5,19 @@ import SpotifyPlayer from "../components/spotifyplayer";
 
 export default function AboutPage() {
   return (
-    <main className=" min-h-screen bg-white">
+    <main className="min-h-screen bg-white ">
       <AboutMe />
 
-      <section className="max-w-6xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="grid max-w-6xl grid-cols-1 gap-6 px-4 py-6 mx-auto md:grid-cols-2">
         <div>
-          <h2 className="font-semibold mb-3 text-lg">
+          <h2 className="mb-3 text-lg font-semibold">
             Major cities I have visited
           </h2>
           <VisitedMap />
         </div>
 
         <div>
-          <h2 className="font-semibold mb-3 text-lg">Have a listen</h2>
+          <h2 className="mb-3 text-lg font-semibold">Have a listen</h2>
           <SpotifyPlayer />
         </div>
       </section>
