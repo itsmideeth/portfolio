@@ -1,12 +1,9 @@
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-
 
 import './globals.css';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
-import { ThemeProvider } from './providers/ThemeProvider';
+import LoaderClient from './components/loaderclient';
 
 
 export const metadata = {
@@ -67,6 +64,7 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
+  
 
   return (
     
@@ -79,14 +77,14 @@ export default function RootLayout({ children }) {
         />
       </head>
       
-      <body className={`font-satoshi bg-[#FAFAFB] dark:bg-gray-900 text-[#0B1220] flex flex-col  min-h-screen`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-  <Navbar />
-  
-        <main className="pt-24 flex-grow">{children}</main>
+      <body className="flex flex-col min-h-screen transition-colors font-satoshi">
 
-<Footer/>
-     </ThemeProvider>
+<LoaderClient><Navbar />
+  
+      <main className="flex-grow pt-24">{children}</main>
+
+<Footer/> 
+</LoaderClient>
       </body>
       
     </html>

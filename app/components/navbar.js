@@ -19,8 +19,27 @@ import Image from 'next/image';
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [isDark, setIsDark] = useState(false);
   const [avatar, setAvatar] = useState(null);
+
+useEffect(() => {
+    // On mount: load theme preference
+    if (localStorage.theme === 'dark' || 
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      setIsDark(true);
+    } else {
+      document.documentElement.classList.remove('dark');
+      setIsDark(false);
+    }
+  }, []);
+
+    const toggleTheme = () => {
+    const newTheme = isDark ? 'light' : 'dark';
+    document.documentElement.classList.toggle('dark', !isDark);
+    localStorage.setItem('theme', newTheme);
+    setIsDark(!isDark);
+    }
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -51,8 +70,8 @@ export default function Navbar() {
   if (!mounted) return null;
 
   return (
-    <nav className="fixed z-[9999] w-full border-b border-gray-200 bg-white/90 backdrop-blur-md dark:bg-gray-950/80 dark:border-gray-800 transition-all duration-300">
-      <div className="flex items-center justify-between max-w-6xl px-4 sm:px-6 py-3 sm:py-4 mx-auto">
+    <nav className="fixed z-[9999] w-full border-b border-gray-200 bg-white/90 backdrop-blur-md dark:bg-white/5 dark:border-gray-800 transition-all duration-300">
+      <div className="flex items-center justify-between max-w-6xl px-4 py-3 mx-auto sm:px-6 sm:py-4">
 
         {/* Left side: Avatar + Name */}
         <Link href="/" className="flex items-center gap-3 group">
@@ -75,7 +94,7 @@ export default function Navbar() {
               </div>
             )}
           </motion.div>
-          <span className="font-semibold text-gray-800 transition-colors duration-200 dark:text-gray-200 text-sm sm:text-base">
+          <span className="text-sm font-semibold text-gray-800 transition-colors duration-200 dark:text-gray-200 sm:text-base">
             Abdulrahmon
           </span>
         </Link>
@@ -83,11 +102,11 @@ export default function Navbar() {
         {/* Right side: Theme toggle & menu button */}
         <div className="flex items-center gap-4 text-sm">
           <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+             onClick={toggleTheme}
             className="p-2 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
             aria-label="Toggle theme"
           >
-            {theme === 'dark' ? <Moon size={20} /> : <Sun size={20} />}
+            {isDark ? <Moon size={20} /> : <Sun size={20} />}
           </button>
 
           <button
@@ -152,7 +171,7 @@ export default function Navbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setOpen(false)}
-                      className="flex items-center p-3 space-x-3 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-all"
+                      className="flex items-center p-3 space-x-3 text-gray-700 transition-all rounded-lg dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"
                     >
                       <Icon size={18} className="text-current" />
                       <span>{label}</span>
@@ -162,7 +181,7 @@ export default function Navbar() {
                       key={href}
                       href={href}
                       onClick={() => setOpen(false)}
-                      className="flex items-center p-3 space-x-3 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-all hover:translate-x-1"
+                      className="flex items-center p-3 space-x-3 text-gray-700 transition-all rounded-lg dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 hover:translate-x-1"
                     >
                       <Icon size={18} className="text-current" />
                       <span>{label}</span>

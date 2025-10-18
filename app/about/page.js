@@ -5,7 +5,7 @@ import SpotifyPlayer from "../components/spotifyplayer";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white ">
+    <main className="min-h-screen transition-colors duration-300">
       <AboutMe />
 
       <section className="grid max-w-6xl grid-cols-1 gap-6 px-4 py-6 mx-auto md:grid-cols-2">

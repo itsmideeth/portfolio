@@ -13,7 +13,7 @@ export default function ScheduleCallButton() {
       whileHover={{ scale: 1.05 }}
        onClick={() => setOpen(true)}
       whileTap={{ scale: 0.95 }}
-      className="cursor-pointer px-6 py-1.5 text-sm rounded-full border-gray-400 text-gray-800 font-medium hover:bg-gray-100 transition-all border-2 inline-block"
+      className="inline-block px-6 py-2 text-sm font-medium text-gray-800 transition-all border-2 border-[#151515] rounded-full cursor-pointer hover:bg-gray-100"
     >
       Schedule a call
     </motion.button>

@@ -8,8 +8,8 @@ import { FiGithub, FiLinkedin, FiTwitter, FiMail } from "react-icons/fi";
 export default function Footer() {
   const socialLinks = [
     { href: "https://github.com/itsmideeth", icon: <FiGithub size={17} />, label: "GitHub" },
-    { href: "https://linkedin.com/in/", icon: <FiLinkedin size={17} />, label: "LinkedIn" },
-    { href: "https://twitter.com/", icon: <FiTwitter size={17} />, label: "Twitter" },
+    { href: "https://linkedin.com/in/itsmideeth", icon: <FiLinkedin size={17} />, label: "LinkedIn" },
+    { href: "https://twitter.com/itsmideeth", icon: <FiTwitter size={17} />, label: "Twitter" },
     { href: "mailto:ajilogbaayomide34@gmail.com", icon: <FiMail size={17} />, label: "Email" },
   ];
 
@@ -45,7 +45,7 @@ export default function Footer() {
       className="w-full bg-white dark:bg-gray-950 py-7 sm:py-5"
     >
       <div
-        className="flex flex-col items-center justify-between max-w-6xl gap-4 px-6 mx-auto text-center  sm:flex-row sm:gap-3 sm:text-left"
+        className="flex flex-col items-center justify-between max-w-6xl gap-4 px-6 mx-auto text-center sm:flex-row sm:gap-3 sm:text-left"
       >
         {/* Avatar + Name */}
         <div className="flex flex-col items-center gap-2 sm:flex-row">

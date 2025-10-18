@@ -2,15 +2,10 @@
 @import "leaflet/dist/leaflet.css";
 
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-
-}
-
-[data-theme='dark'] {
-  --foreground: #ffffff;
-  --background: #0a0a0a;
+/* Dark theme (NextThemes adds .dark on <html>) */
+html.dark {
+  --background: #121212;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -19,21 +14,15 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Apply to body only if needed, but prefer Tailwind classes */
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: 'Satoshi', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
-
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -41,7 +30,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(var(--background));
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -52,3 +41,12 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+
+
+
+
+
+
+

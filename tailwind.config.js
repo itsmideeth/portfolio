@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    darkMode: 'class',
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -20,6 +20,13 @@ module.exports = {
           "sans-serif",
         ],
       },
+/*       colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        card: 'var(--card)',
+  secondary: 'var(--secondary)',
+  borders: 'var(--borders)',
+      }, */
     },
   },
   plugins: [],
