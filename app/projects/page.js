@@ -71,7 +71,7 @@ export default function ProjectsPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="min-h-screen px-4 py-8 text-gray-900 transition-colors duration-300 bg-white dark:bg-gray-950 dark:text-gray-100 sm:px-6 md:px-10 lg:px-16"
+      className="min-h-screen px-4 py-8 text-gray-900 transition-colors duration-300 bg-white dark:bg-[#121212] dark:text-gray-100 sm:px-6 md:px-10 lg:px-16"
     >
       <div className="max-w-6xl mx-auto">
         {/* ======= HEADER ======= */}
@@ -101,7 +101,7 @@ export default function ProjectsPage() {
             <motion.div
               key={project.title}
               variants={itemVariants}
-              className="p-6 transition-all bg-white border border-gray-200 dark:border-gray-800 rounded-2xl hover:shadow-md dark:bg-gray-900 hover:-translate-y-1"
+              className="p-6 transition-all bg-white border border-gray-200 dark:border-0 rounded-2xl hover:shadow-md dark:bg-[#1E1E1E] hover:-translate-y-1"
             >
               <h2 className="mb-1 font-semibold">
                 {project.title}

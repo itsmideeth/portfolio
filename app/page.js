@@ -38,7 +38,7 @@ export default function Home() {
     flex flex-col items-center justify-center
     min-h-[55vh]
     py-6
-    text-center text-gray-900 bg-white
+    text-center text-gray-900 dark:text-white bg-white dark:bg-[#121212]
   "
 >
   <motion.section
@@ -67,7 +67,7 @@ export default function Home() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
-      className="mt-5 text-[#151515] text-3xl font-semibold tracking-tight md:text-4xl"
+      className="mt-5 text-[#151515] dark:text-white text-3xl font-semibold tracking-tight md:text-4xl"
     >
       Ajilogba Abdulrahmon
     </motion.h1>
@@ -77,7 +77,7 @@ export default function Home() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.6 }}
-      className="mt-3 text-base font-medium text-gray-500 sm:text-lg md:text-xl"
+      className="mt-3 text-base font-medium text-gray-500 dark:text-[#ededed] sm:text-lg md:text-xl"
     >
       Full-Stack Developer
     </motion.p>
@@ -93,7 +93,7 @@ export default function Home() {
         href="/about"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="px-6 py-2 sm:py-2.5 rounded-full text-white font-medium shadow-sm hover:bg-gray-800 transition-all text-sm bg-[#151515]" 
+        className="px-6 py-2 sm:py-2.5 rounded-full text-white font-medium shadow-sm transition-all text-sm bg-[#151515] dark:bg-white dark:text-[#151515]" 
       >
         About me
       </motion.a>

@@ -42,7 +42,7 @@ export default function Footer() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="w-full bg-white dark:bg-gray-950 py-7 sm:py-5"
+      className="w-full bg-white dark:bg-[#121212] py-7 sm:py-5"
     >
       <div
         className="flex flex-col items-center justify-between max-w-6xl gap-4 px-6 mx-auto text-center sm:flex-row sm:gap-3 sm:text-left"

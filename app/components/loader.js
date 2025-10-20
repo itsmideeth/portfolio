@@ -39,13 +39,13 @@ export default function Loader({ onFinish }) {
     <AnimatePresence>
       {!finished && (
         <motion.div
-          className="fixed inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-900 z-[9999]"
+          className="fixed inset-0 flex flex-col items-center justify-center bg-white dark:bg-[#121212] z-[9999]"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Progress Bar */}
-          <div className="w-[70%] sm:w-64 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
+          <div className="w-[70%] sm:w-64 h-2 bg-gray-200 dark:bg-black/50 rounded-full overflow-hidden shadow-inner">
             <motion.div
               className="h-full bg-gray-900 dark:bg-white"
               initial={{ width: 0 }}

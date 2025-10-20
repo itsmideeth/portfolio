@@ -8,18 +8,18 @@ import { ArrowUpRight } from "lucide-react";
 const blogs = [
   {
     id: 1,
-    title: "Active Recall: The Secret to Retaining More of What You Study",
-    date: "January 2025",
-    tags: ["Study", "AI", "Guide"],
+    title: "Building Generalizable AI Agents Through Reinforcement Learning and Neuroscience",
+    date: "September 2025",
+    tags: ["AI Research", "Robotics", "Ethics"],
     link: "https://ayomide.hashnode.dev/active-recall-study",
   },
   {
     id: 2,
     title:
-      "Beginner Friendly Guide to Prompt Engineering: Crafting Effective AI Prompts",
-    date: "July 2024",
-    tags: ["AI", "Guide"],
-    link: "https://ayomide.hashnode.dev/prompt-engineering-guide",
+      "Advancing AI Alignment and Real-World Applications of GPT-5 Across Industries",
+    date: "October 2025",
+    tags: ["AI", "Research"],
+    link: "https://openai.com/research/",
   },
   {
     id: 3,
@@ -38,17 +38,24 @@ const blogs = [
   },
   {
     id: 5,
-    title: "Implementing a BackgroundRunner with Flask-Executor",
-    date: "March 2023",
-    tags: ["Python", "Flask"],
-    link: "https://ayomide.hashnode.dev/flask-executor-background",
+    title: "Beyond Firewalls: The Rise of Zero Trust Architecture",
+    date: "January 2025",
+    tags: ["Security", "Threat Intelligence"],
+    link: "https://www.csoonline.com/article/3677125/what-is-zero-trust-architecture.html",
   },
   {
     id: 6,
-    title: "What Developers Should Know About Kubernetes",
-    date: "December 2022",
-    tags: ["Kubernetes", "Developer Tools", "Containers"],
-    link: "https://ayomide.hashnode.dev/kubernetes-developers",
+    title: "How Kubernetes and AI Power the Future of Cloud Computing",
+    date: "January 2024",
+    tags: ["Infrastructure", "Cloud Platforms"],
+    link: "https://cloud.google.com/blog/products/containers-kubernetes/how-ai-and-kubernetes-are-shaping-the-future-of-cloud",
+  },
+   {
+    id: 7,
+    title: "Driving Enterprise Agility with Open Source, Kubernetes, and Edge Solutions",
+    date: "August 2025",
+    tags: ["Containers", "Open Source"],
+    link: "https://www.redhat.com/en/blog",
   },
 ];
 
@@ -68,13 +75,13 @@ export default function BlogPostsSection() {
     const shuffled = [...blogs].sort((a, b) =>
       random(a.title + seed) % 2 ? 1 : -1
     );
-    setDailyBlogs(shuffled.slice(0, 6));
+    setDailyBlogs(shuffled.slice(0, 7));
   }, [setDailyBlogs]);
 
   return (
     <section
       id="blog"
-      className="py-8 transition-colors duration-300 bg-white dark:bg-gray-950"
+      className="py-8 transition-colors duration-300 bg-white dark:bg-[#121212]"
     >
       <div className="max-w-6xl px-4 mx-auto sm:px-6 md:px-8">
         {/* Section Header */}
@@ -96,14 +103,14 @@ export default function BlogPostsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="flex flex-col justify-between p-6 transition-all duration-300 bg-white border border-gray-200 dark:bg-gray-900 rounded-2xl dark:border-gray-800 hover:shadow-md hover:-translate-y-1"
+              className="flex flex-col justify-between p-6 transition-all duration-300 bg-white border border-gray-200 dark:bg-[#1E1E1E] rounded-2xl dark:border-0 hover:shadow-md hover:-translate-y-1"
             >
               <div>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4 ">
                   {blog.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 text-xs text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-300"
+                      className="px-3 py-1 text-xs text-gray-700 bg-gray-100 rounded-full dark:bg-black/50 dark:text-gray-300"
                     >
                       {tag}
                     </span>
@@ -122,7 +129,7 @@ export default function BlogPostsSection() {
                 href={blog.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 mt-6 text-sm font-medium text-gray-800 transition-colors dark:text-gray-200 hover:text-black dark:hover:text-blue-400"
+                className="inline-flex justify-end items-center gap-1 mt-6 text-sm font-medium text-gray-800 transition-colors dark:text-gray-200 hover:text-black dark:hover:text-blue-400"
               >
                 Read <ArrowUpRight className="w-4 h-4" />
               </a>

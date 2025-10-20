@@ -23,23 +23,25 @@ export default function Navbar() {
   const [avatar, setAvatar] = useState(null);
 
 useEffect(() => {
-    // On mount: load theme preference
-    if (localStorage.theme === 'dark' || 
-        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      setIsDark(true);
-    } else {
-      document.documentElement.classList.remove('dark');
-      setIsDark(false);
-    }
-  }, []);
+  const storedTheme = localStorage.getItem('theme');
+  const prefersDark = storedTheme === 'dark';
 
-    const toggleTheme = () => {
-    const newTheme = isDark ? 'light' : 'dark';
-    document.documentElement.classList.toggle('dark', !isDark);
-    localStorage.setItem('theme', newTheme);
-    setIsDark(!isDark);
-    }
+  if (prefersDark) {
+    document.body.classList.add('dark');
+    setIsDark(true);
+  } else {
+    document.body.classList.remove('dark');
+    setIsDark(false);
+  }
+}, []);
+
+const toggleTheme = () => {
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.classList.toggle('dark', newTheme === 'dark');
+  localStorage.setItem('theme', newTheme);
+  setIsDark(!isDark);
+};
+
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -70,7 +72,7 @@ useEffect(() => {
   if (!mounted) return null;
 
   return (
-    <nav className="fixed z-[9999] w-full border-b border-gray-200 bg-white/90 backdrop-blur-md dark:bg-white/5 dark:border-gray-800 transition-all duration-300">
+    <nav className="fixed z-[9999] w-full border-b border-gray-200 dark:border-0 bg-white/90 backdrop-blur-md dark:backdrop-blur-xs dark:bg-[#121212] transition-all duration-300">
       <div className="flex items-center justify-between max-w-6xl px-4 py-3 mx-auto sm:px-6 sm:py-4">
 
         {/* Left side: Avatar + Name */}
@@ -103,14 +105,14 @@ useEffect(() => {
         <div className="flex items-center gap-4 text-sm">
           <button
              onClick={toggleTheme}
-            className="p-2 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="p-2 transition-colors rounded-lg dark:text-white"
             aria-label="Toggle theme"
           >
             {isDark ? <Moon size={20} /> : <Sun size={20} />}
           </button>
 
           <button
-            className="p-2 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="p-2 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-white"
             aria-label="menu"
             onClick={() => setOpen(!open)}
           >
@@ -148,14 +150,14 @@ useEffect(() => {
             onClick={() => setOpen(false)}
           >
             <motion.div
-              className="relative z-[100000] bg-white dark:bg-gray-900/95 border border-gray-200 dark:border-gray-800 shadow-2xl rounded-2xl w-[90%] max-w-sm sm:max-w-md"
+              className="relative z-[100000] bg-white dark:bg-gray-900/95 border border-gray-200 dark:border-0 shadow-2xl dark:shadow-sm rounded-2xl w-[90%] max-w-sm sm:max-w-md"
               initial={{ opacity: 0, scale: 0.8, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.35, type: 'spring', stiffness: 120 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="px-5 sm:px-6 pt-10 sm:pt-12 pb-6 flex flex-col text-sm gap-3 sm:gap-4 min-w-[200px] sm:min-w-[220px]">
+              <div className="px-5 sm:px-6 pt-10 sm:pt-12 pb-6 flex flex-col text-sm gap-3 sm:gap-4 min-w-[200px] sm:min-w-[220px] dark:bg-[#1E1E1E] rounded-lg">
                 {[
                   { href: '/', label: 'Home', icon: Home },
                   { href: '/about', label: 'About', icon: User },
@@ -171,7 +173,7 @@ useEffect(() => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setOpen(false)}
-                      className="flex items-center p-3 space-x-3 text-gray-700 transition-all rounded-lg dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"
+                      className="flex items-center p-3 space-x-3 text-gray-700 transition-all rounded-lg dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-black/30"
                     >
                       <Icon size={18} className="text-current" />
                       <span>{label}</span>
@@ -181,7 +183,7 @@ useEffect(() => {
                       key={href}
                       href={href}
                       onClick={() => setOpen(false)}
-                      className="flex items-center p-3 space-x-3 text-gray-700 transition-all rounded-lg dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 hover:translate-x-1"
+                      className="flex items-center p-3 space-x-3 text-gray-700 transition-all rounded-lg dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-black/30 hover:translate-x-1"
                     >
                       <Icon size={18} className="text-current" />
                       <span>{label}</span>
