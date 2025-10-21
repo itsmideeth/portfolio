@@ -103,7 +103,6 @@ const toggleTheme = () => {
         {/* Right side: Theme toggle & menu button */}
         <div className="flex items-center gap-4 text-sm">
           <button
-             onClick={toggleTheme}
             className="p-2 transition-colors rounded-lg dark:text-white"
             aria-label="Toggle theme"
           >
