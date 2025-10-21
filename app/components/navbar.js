@@ -22,15 +22,15 @@ export default function Navbar() {
   const [isDark, setIsDark] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
-useEffect(() => {
+/* useEffect(() => {
   const storedTheme = localStorage.getItem('theme');
   const prefersDark = storedTheme === 'dark';
 
   if (prefersDark) {
-    document.body.classList.add('dark');
+    document.documentElement.classList.add('dark'); // ✅ fix target
     setIsDark(true);
   } else {
-    document.body.classList.remove('dark');
+    document.documentElement.classList.remove('dark'); // ✅ fix target
     setIsDark(false);
   }
 }, []);
@@ -40,8 +40,7 @@ const toggleTheme = () => {
   document.documentElement.classList.toggle('dark', newTheme === 'dark');
   localStorage.setItem('theme', newTheme);
   setIsDark(!isDark);
-};
-
+}; */
 
   // Prevent body scroll when menu is open
   useEffect(() => {
