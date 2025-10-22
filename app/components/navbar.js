@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import {
-  Sun,
-  Moon,
+  Monitor,
+  Smartphone,
   Home,
   User,
   Briefcase,
@@ -13,34 +13,23 @@ import {
   BookOpen,
   FileText
 } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const [avatar, setAvatar] = useState(null);
+   const [isDesktop, setIsDesktop] = useState(true);
 
-/* useEffect(() => {
-  const storedTheme = localStorage.getItem('theme');
-  const prefersDark = storedTheme === 'dark';
+ useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768); // mobile breakpoint at 768px
+    };
 
-  if (prefersDark) {
-    document.documentElement.classList.add('dark'); // ✅ fix target
-    setIsDark(true);
-  } else {
-    document.documentElement.classList.remove('dark'); // ✅ fix target
-    setIsDark(false);
-  }
-}, []);
-
-const toggleTheme = () => {
-  const newTheme = isDark ? 'light' : 'dark';
-  document.documentElement.classList.toggle('dark', newTheme === 'dark');
-  localStorage.setItem('theme', newTheme);
-  setIsDark(!isDark);
-}; */
+    handleResize(); // run on mount
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -101,12 +90,12 @@ const toggleTheme = () => {
         </Link>
 
         {/* Right side: Theme toggle & menu button */}
-        <div className="flex items-center gap-4 text-sm">
+        <div className="flex items-center gap-4.5 text-sm">
           <button
             className="p-2 transition-colors rounded-lg dark:text-white"
-            aria-label="Toggle theme"
+            title={isDesktop ? "Desktop" : "Mobile"}
           >
-            {isDark ? <Moon size={20} /> : <Sun size={20} />}
+             {isDesktop ? <Monitor size={20} /> : <Smartphone size={20} />}
           </button>
 
           <button
