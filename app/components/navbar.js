@@ -90,7 +90,7 @@ export default function Navbar() {
         </Link>
 
         {/* Right side: Theme toggle & menu button */}
-        <div className="flex items-center gap-4.5 text-sm">
+        <div className="flex items-center gap-4 text-sm">
           <button
             className="p-2 transition-colors rounded-lg dark:text-white"
             title={isDesktop ? "Desktop" : "Mobile"}
