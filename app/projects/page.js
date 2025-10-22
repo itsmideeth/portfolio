@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Eye } from "lucide-react";
+import ScheduleCallButton from "../components/schedulecallbutton";
 
 const projects = [
   {
@@ -116,7 +117,7 @@ export default function ProjectsPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 href={project.link}
-                className="flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors dark:text-gray-200 hover:text-black dark:hover:text-blue-400"
+                className="flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors dark:text-gray-200 hover:text-black"
               >
                 <Eye size={16} /> View Project
               </a>
@@ -138,7 +139,14 @@ export default function ProjectsPage() {
           <p className="mb-6 text-base text-gray-600 dark:text-gray-400">
             I&apos;m always open to discussing new projects and opportunities.
           </p>
-          <motion.a
+          <ScheduleCallButton  className="inline-block px-5 py-2 text-base font-medium text-white transition-all bg-black rounded-md dark:bg-gray-100 dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200"/>
+        </motion.div>
+      </div>
+    </motion.main>
+  );
+}
+
+<motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
             href="#"
@@ -146,8 +154,3 @@ export default function ProjectsPage() {
           >
             Schedule a Call
           </motion.a>
-        </motion.div>
-      </div>
-    </motion.main>
-  );
-}

@@ -51,7 +51,7 @@ export default function SchedulePopup({ isOpen, onClose }) {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white dark:bg-gray-900 w-full max-w-[850px] rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden"
+        className="bg-white dark:bg-[#1E1E1E] w-full max-w-[850px] rounded-2xl shadow-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Left Side */}

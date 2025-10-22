@@ -4,6 +4,7 @@ import SpotifyPlayer from "../components/spotifyplayer";
 
 
 export default function AboutPage() {
+  
   return (
     <main className="min-h-screen transition-colors duration-300">
       <AboutMe />
@@ -17,7 +18,7 @@ export default function AboutPage() {
         </div>
 
         <div>
-          <h2 className="mb-3 text-lg font-semibold text-[#ededed]">Have a listen</h2>
+          <h2 className="mb-3 text-lg font-semibold dark:text-[#ededed]">Have a listen</h2>
           <SpotifyPlayer />
         </div>
       </section>
